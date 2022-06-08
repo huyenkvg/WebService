@@ -17,5 +17,20 @@ public class AdminController {
     private AdminService adminService;
     @Autowired
     private LoaibangServiceImpl bang;
-
+    //lay toàn bộ thông tin
+    @GetMapping("get")
+    public List<Admin> getAdmin() {
+        List<Admin> adminList = adminService.listAll();
+        adminList.forEach(c -> {
+            System.out.println(c.showSth());
+        });
+        return adminList;
+    }
+    @PostMapping("/edit")
+    public List<Admin> postThuongHieu(@RequestBody Admin admin) {
+        List<Admin> adList = adminService.listAll();
+        adList.add(admin);
+        adminService.save(admin);
+        return adList;
+    }
 }
