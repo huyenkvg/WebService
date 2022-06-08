@@ -64,13 +64,11 @@ public class CauhoiController {
     @GetMapping("get-all")
     public List<CauhoiDto> getCauhoiTest() {
         List<CauhoiDto> list = cauhoiService.findAll();
-
         return list;
     }
     @GetMapping("get-rand")
     public List<CauhoiDTO> randomDeThi(@RequestParam(name="mabode") Integer maBoDe) {
-        List<CauhoiDTO> list = cauhoiService.randCauHoi(maBoDe);
-
+        List<CauhoiDTO> list = cauhoiService.layBoDe(maBoDe);
         List<CauhoiDTO> myrand = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             Random generator = new Random();

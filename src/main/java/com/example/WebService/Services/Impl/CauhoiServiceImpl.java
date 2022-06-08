@@ -205,6 +205,17 @@ public class CauhoiServiceImpl implements CauhoiService {
         return list;
     }
 
+    public List<CauhoiDTO> layBoDe(Integer maBoDe) {
+        List<Cauhoi> cauhois = cauhoiRepository.find_ALL_CauHoi();
+        List<CauhoiDTO> list = new ArrayList<>();
+        for(Cauhoi cauhoi : cauhois){
+            if(cauhoi.getMaBoDe().getMabodethi()==maBoDe) {
+                list.add(CauhoiMapper.toCauhoiDTO(cauhoi));
+            }
+        }
+        return list;
+    }
+
     @Override
     public List<CauhoiDTO> getKQ_Cauhoi(String email, Integer luotthi, Integer maBoDe) {
         List<Cauhoi> cauhois = cauhoiRepository.getKQ_Cauhoi(email,luotthi,maBoDe);
