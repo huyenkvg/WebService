@@ -26,7 +26,10 @@ public class AdminService {
     public void delete(String id) {
         repo.deleteById(id);
     }
-
+    public Admin getByEmail (String email)
+    {
+        return repo.findAdminByEmail(email);
+    }
     public Optional<Admin> get(String id) {
         return repo.findById(id);
     }

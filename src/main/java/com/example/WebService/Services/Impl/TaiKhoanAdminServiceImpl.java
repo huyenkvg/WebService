@@ -14,6 +14,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Service;
 
+import javax.xml.bind.DatatypeConverter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -21,8 +24,23 @@ import java.util.stream.Collectors;
 
 @Service
 public class TaiKhoanAdminServiceImpl implements TaiKhoanAdminService {
+
+
+
+
     @Autowired
     private TaikhoanAdminRepository taikhoanAdminRepository;
+
+
+    @Override
+    public String maHoaMK(String mk) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(mk.getBytes());
+        byte[] digest = md.digest();
+        String newMK = DatatypeConverter.printHexBinary(digest).toUpperCase();
+        return newMK;
+    }
+
 
     public List<TaikhoanAdmin> findAll() {
         return taikhoanAdminRepository.findAll();

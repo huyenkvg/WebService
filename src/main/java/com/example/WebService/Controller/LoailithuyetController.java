@@ -20,6 +20,7 @@ public class LoailithuyetController {
         List<LoailithuyetDTO> loailt = loailithuyetService.getListLoailt();
         return loailt;
     }
+
     @GetMapping("{id}")
     public LoailithuyetDTO getLoailtById(@PathVariable Integer id){
         LoailithuyetDTO loailt = loailithuyetService.getLoailtByID(id);
