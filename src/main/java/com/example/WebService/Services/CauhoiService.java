@@ -20,4 +20,5 @@ public interface CauhoiService {
     List<CauhoiDTO> getCausai(String email, Integer maBoDe);
 
     // List<CauhoiDTO> randCauHoi2(Integer maBoDe);
+
 }

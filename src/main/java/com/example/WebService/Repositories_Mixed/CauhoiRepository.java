@@ -33,6 +33,13 @@ public interface CauhoiRepository extends JpaRepository<Cauhoi, Integer> {
             "and c.MABODE =:mabode")
     List<Cauhoi> getCauHoi(@Param("email") String email,@Param("mabode") Integer mabode);
 
+    @Modifying
+    @Transactional
+    @Query(nativeQuery = true,value = "DELETE  FROM Cauhoi Where Macauhoi=:macauhoi")
+    void DeleteCauHoi(@Param("macauhoi") String macauhoi);
 
-
+    @Modifying
+    @Transactional
+    @Query(nativeQuery = true,value = "select * from cauhoi where MA_LOAI_LI_THUYET = :maloailythuyet")
+    List<Cauhoi> demCauHoi(@Param("maloailythuyet") String maloailythuyet);
 }

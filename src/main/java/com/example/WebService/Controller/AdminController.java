@@ -11,8 +11,10 @@ import com.example.WebService.Services.Impl.LoaibangServiceImpl;
 import com.example.WebService.Services.Impl.TaiKhoanAdminServiceImpl;
 import com.example.WebService.Services.TaiKhoanAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
@@ -31,14 +33,35 @@ public class AdminController {
 //        return list;
 //    }
 
+    public String getAdminInfo(String email)
+    {
+        List<AdminDto> list = adminService.listAllHuyen();
+        for(AdminDto tk : list){
+            if(tk.getEmail().trim().equals(email.trim())){
+                return tk.getHoten();
+            }
+        }
+        return "Administrator";
+    }
+
+
+
     @GetMapping("/dang-nhap")
     public String checkDN(@RequestParam(name="email") String tenDN, @RequestParam(name="password") String mk) throws NoSuchAlgorithmException {
         List<TaikhoanAdmin> list = taiKhoanAdminService.findAll();
+
         for(TaikhoanAdmin tk : list){
-            if(tk.getTendangnhap().trim().equals(tenDN.trim()) && mk.trim().equals(tk.getMatkhau().trim())){
-                return "";
+            if(tk.getTendangnhap().trim().equals(tenDN.trim())){
+                if(mk.trim().equals(tk.getMatkhau().trim())){
+                    return getAdminInfo(tenDN);
+                }
+
+                return "sai mật khẩu";
             }
         }
-        return "Đăng Nhập Thất bại";
+        return "Tài khoản không tồn tại";
     }
-}
+
+
+
+    }

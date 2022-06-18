@@ -238,4 +238,13 @@ public class CauhoiServiceImpl implements CauhoiService {
         return list;
     }
 
+    public void deleteCauHoiById(String macauhoi){
+       cauhoiRepository.DeleteCauHoi(macauhoi);
+
+    }
+
+    public int getSLCauhoiTheoLyThuyet(String maloailythuyet){
+        return cauhoiRepository.demCauHoi(maloailythuyet).size();
+
+    }
 }

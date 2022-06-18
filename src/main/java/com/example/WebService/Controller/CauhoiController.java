@@ -89,4 +89,23 @@ public class CauhoiController {
         cauhoiService.delete(x);
     }
 
+
+    @DeleteMapping("xoa-cauhoi")
+    public String xoaByMaCauhoi(@RequestParam (name="macauhoi") String x) {
+        CauhoiDTO ch =getCauhoiById(Integer.parseInt(x));
+        cauhoiService.deleteCauHoiById(x);
+        if(ch == null)
+        {
+            return "ma cau hoi khong ton tai";
+        }
+        return "xoa thanh cong "+ch.getMacauhoi();
+    }
+
+    @GetMapping("get-lythuyet")
+    public int getCauhoiLyThuyet(@RequestParam (name="maloailythuyet") String x) {
+        return cauhoiService.getSLCauhoiTheoLyThuyet(x);
+    }
+
+
+
 }

@@ -26,7 +26,7 @@ public interface AdminRepository extends JpaRepository<Admin, String> {
 
     @Modifying
     @Transactional
-    @Query(nativeQuery = true,value = "SELECT * FROM Admin  WHERE email=:email")
+    @Query(nativeQuery = true,value = "SELECT * FROM Admin  WHERE email=N':email'")
     Admin findAdminByEmail(@Param("email") String email);
 
 }
